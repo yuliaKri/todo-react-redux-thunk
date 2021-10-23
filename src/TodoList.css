@@ -4,3 +4,46 @@
 .todoList {
   color: blue;
 }
+
+.App {
+  text-align: center;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.App-header {
+  background-color: gray;
+  color: white;
+  padding: 10px 0 10px;
+}
+
+ol {
+  width: 200px;
+  margin: 10px auto;
+}
+
+.todoContainer{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonDelAdd{
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: none;
+}
+
+.buttonDelAdd img {
+  width: 100%;
+}
+
+.loading {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+}

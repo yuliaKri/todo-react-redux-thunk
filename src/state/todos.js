@@ -1,3 +1,5 @@
+const initialState = {list:[]};
+
 export function loadTodos() {
   return dispatch => {
     // for the sake of this exercise data is being returned directly - real implementation would use API
@@ -5,28 +7,46 @@ export function loadTodos() {
     setTimeout(() => {
       dispatch({
         type: "LIST_TODOS",
-        payload: ["todo one", "todo two"]
+        payload: [{id: Math.random(), name: "todo one"}, {id: Math.random(), name:"todo two"}]
       });
     }, 2000);
   };
 }
 
-export function addTodo() {
-  // imagine that adding a todo is also an async operation
-  setTimeout(() => {
-    // TODO
-  }, 2000);
+export function deleteTodo(id) {
+  return (dispatch) =>
+      dispatch ({
+        type: "DEL_TODO",
+        payload: id
+      });
 }
 
-export function todos(state, action) {
+export function addTodo(newTodo) {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch({
+        type: "ADD_TODO",
+        payload: newTodo
+      });
+    }, 2000);
+  };
+}
+
+export function todos(state=initialState, action) {
+
   switch (action.type) {
     case "ADD_TODO":
-      // TODO
-      return state;
+      const newTodo = {id: Math.random(), name: action.payload}
+      return {list: [...state.list, newTodo]};
     case "LIST_TODOS":
-      state.list = action.payload;
-      return state;
+      return {list: action.payload};
+    case "DEL_TODO":
+      const newList = state.list.filter(el=>el.id !== action.payload)
+      return {list: newList};
+
     default:
       return state;
   }
 }
+
+

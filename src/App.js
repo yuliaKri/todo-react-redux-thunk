@@ -1,21 +1,16 @@
 import React from "react";
-import { createStore, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 import "./App.css";
-import { TodoList } from "./TodoList";
-import { todos } from "./state/todos";
-
-const store = createStore(todos, applyMiddleware(thunk));
+import TodoList from "./TodoList";
 
 function App() {
-  return (
-    <Provider store={store}>
-      <div className="App">
-        <TodoList />
-      </div>
-    </Provider>
-  );
+
+    return (
+
+        <div className="App">
+            <TodoList/>
+        </div>
+
+    );
 }
 
 export default App;
