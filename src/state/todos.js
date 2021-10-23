@@ -13,14 +13,6 @@ export function loadTodos() {
   };
 }
 
-export function deleteTodo(id) {
-  return (dispatch) =>
-      dispatch ({
-        type: "DEL_TODO",
-        payload: id
-      });
-}
-
 export function addTodo(newTodo) {
   return dispatch => {
     setTimeout(() => {
@@ -30,6 +22,22 @@ export function addTodo(newTodo) {
       });
     }, 2000);
   };
+}
+
+export function deleteTodo(id) {
+  return (dispatch) =>
+      dispatch ({
+        type: "DEL_TODO",
+        payload: id
+      });
+}
+
+export function editTodo(id, name) {
+  return (dispatch) =>
+      dispatch ({
+        type: "EDIT_TODO",
+        payload: {id, name}
+      });
 }
 
 export function todos(state=initialState, action) {
@@ -43,6 +51,9 @@ export function todos(state=initialState, action) {
     case "DEL_TODO":
       const newList = state.list.filter(el=>el.id !== action.payload)
       return {list: newList};
+    case "EDIT_TODO":
+      const editedList = state.list.map(el=>el.id === action.payload.id ? el = action.payload : el )
+      return {list: editedList};
 
     default:
       return state;
