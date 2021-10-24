@@ -7,7 +7,7 @@ import Task from "./Task";
 
 function TodoList(props) {
     const {todos, loadTodos, addTodo} = props;
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState("");
 
     useEffect(() => {
             loadTodos();
@@ -18,17 +18,17 @@ function TodoList(props) {
         <div className="todoListMain">
             <div className="header">
                 <h1 className="App-header">My Todo List</h1>
-                <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="add todo"/>
-                <button onClick={() => {
+                <input data-testid="input" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="add todo"/>
+                <button data-testid="createButton" onClick={() => {
                     addTodo(inputValue);
-                    setInputValue('')
+                    setInputValue("")
                 }}>Add todo
                 </button>
             </div>
             <div>
                 <ol className="todoList">
                     {todos.map(todo => (
-                        <li key={todo.id}>
+                        <li key={todo.id} data-testid="todo">
                             <Task todo={todo}/>
                         </li>
                     ))}

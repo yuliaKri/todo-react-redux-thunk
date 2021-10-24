@@ -8,19 +8,19 @@ function Task(props) {
 
     const {deleteTodo, editTodo, todo} = props;
 
-    const [newName, setNewName] = useState('');
+    const [newName, setNewName] = useState("");
     const [toggle, setToggle] = useState(false);
 
     return (
 
-        <div className='todoContainer'>
+        <div className="todoContainer">
             {todo.name}
-            <button onClick={() => deleteTodo(todo.id)} className="buttonDelAdd"><img src={delIcon}
+            <button data-testid="deleteButton" onClick={() => deleteTodo(todo.id)} className="buttonDelAdd"><img src={delIcon}
                                                                                       alt="del"/>
             </button>
-            <button onClick={()=>setToggle(true)} >edit</button>
+            <button data-testid="editButton" onClick={()=>setToggle(true)} >edit</button>
             {toggle && <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="change todo"/>}
-            {toggle && <button onClick={() => {editTodo(todo.id, newName);setToggle(false)}} >save</button>}
+            {toggle && <button data-testid="saveButton" onClick={() => {editTodo(todo.id, newName);setToggle(false)}} >save</button>}
 
         </div>
 
